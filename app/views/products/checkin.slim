@@ -1,0 +1,21 @@
+p = notice
+h1
+    a href="/" 
+        |<
+    |  Proma
+
+ul
+    - @charr.each do |ele|
+        = form_for ele, :url => {:action => "checkin", :controller => "products" } do |f| 
+            - p = @products.find(ele.product_id)
+            div style="margin-top:32px"
+                h3
+                    = link_to p.name, "products/" + p.id.to_s
+                p
+                    b In stock:  
+                    i = p.in_stock
+                p
+                    b Add:
+                    = f.hidden_field :product_id
+                    = f.text_field :add_stock, type: "number"
+            = f.submit "Add to stock"

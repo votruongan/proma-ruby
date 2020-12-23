@@ -1,0 +1,29 @@
+p = notice
+h1
+    a href="/" 
+        |<
+    |  Proma
+
+ul
+= form_for @order do |f| 
+    = f.fields_for :order_items do |ff|
+        - p = @products[ff.index]
+        div style="margin-top:32px"
+            h3
+                = link_to p.name, "products/" + p.id.to_s
+            p
+                b Price: 
+                i = p.sell_price
+                b   Available:  
+                i = p.in_stock
+            div style="margin-left:32px"
+                = ff.hidden_field :product_id
+                p
+                    b Order:
+                    = ff.text_field :quantity, type: "number"
+                p
+                    = p.description
+    = f.submit
+
+<script>
+</script>

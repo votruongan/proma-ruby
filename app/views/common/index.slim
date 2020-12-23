@@ -1,0 +1,23 @@
+h1
+    | PROMA
+
+/ - if defined? user_name
+/     p
+/         | Welcome user 
+/         = user_name
+/ - else
+/     = link_to "Login", "/login"
+/     |  / 
+/     = link_to "Register", "/register"
+
+= link_to "Buy product", "/order"
+br
+= link_to "Product check in", "/checkin"
+br
+= link_to "Manage Product", "/products"
+br
+= link_to "Monthly Report", "/report"
+
+
+<script>
+</script>

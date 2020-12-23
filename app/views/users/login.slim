@@ -1,0 +1,13 @@
+h1 PROMA - LOGIN
+
+= form_for @user, :url => {:controller => "users", :action => "create"} do |f|
+    .field
+        = f.label :email
+        |<br>
+        = f.text_field :email
+    .field
+        = f.label :password
+        |<br>
+        = f.password_field :password
+    .actions
+        = f.submit

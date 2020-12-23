@@ -1,0 +1,54 @@
+h1
+    a href="/" 
+        |<
+    |  Proma
+
+div
+    h3 Month:
+    input type="number" id="month"
+
+div
+    h3 Year:
+    input type="number" id="year"
+
+button id="buttonReport" style="margin-top:32px"
+    | Generate Report
+
+- if @result
+    p 
+        b Total income: 
+        = @result['income']
+    p 
+        b Total revenue: 
+        = @result['revenue']
+
+    table
+        thead
+            th Id
+            th Name
+            th Sold count
+            th Average Revenue
+        
+        tbody
+            - @result['detail'].each do |p|
+                tr
+                    td
+                        = p[0]
+                    td
+                        = p[1]["name"]
+                    td
+                        = p[1]["sold"]
+                    td
+                        = p[1]["sold"] == 0 ? 0 : p[1]["total_revenue"].to_f / p[1]["sold"]
+
+javascript:
+    var urlParams = new URLSearchParams(window.location.search)
+    year.value = urlParams.get("year")
+    month.value = urlParams.get("month")
+    buttonReport.addEventListener("click",function(){
+        if (!year.value || !month.value){
+            console.log("nothing to redirect")
+            return
+        }
+        window.location.href = `/report?year=${year.value}&month=${month.value}`
+    })
