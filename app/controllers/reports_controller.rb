@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
         income = 0
         revenue = 0
         detail = {}
-        Product.all.each do |p|
+        Product.all.order(:id).each do |p|
             detail[p.id.to_s] = {"name" => p.name, "sold"=> 0, "total_revenue" => 0}
         end
         orders.each do |o|
